@@ -108,9 +108,9 @@ const Card = ({ id, imgSrc, title, price, stars, wish = "far fa-heart" }) => {
             <div className="titles">
                 <h3>{title}</h3>
             </div>
-            <div className="card-body">
+            <div className="card-body flex-center justify-between">
                 <div className="star-rating-container flex-center">
-                    <h4 className='stars'>{stars}</h4> <i className="fas fa-star starred"></i>
+                <i className="fas fa-star starred"></i> <h4 className='stars'>{stars}</h4>
                 </div>
                 <span className="price">₹{price}</span>
             </div>

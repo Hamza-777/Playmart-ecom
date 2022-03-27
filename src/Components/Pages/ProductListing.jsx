@@ -4,18 +4,21 @@ import { useProduct } from '../Providers/ProductProvider';
 import '../Styles/ProductListing.css';
 
 const ProductListing = ({ searchQuery }) => {
-    const { products } = useProduct();
-    const [ prods, setProds ] = useState(products);
+    const { products, productState: { prods }, dispatchState } = useProduct();
     const [ formOneSym, setFormOneSym ] = useState('-');
     const [ formTwoSym, setFormTwoSym ] = useState('-');
     const [ formThreeSym, setFormThreeSym ] = useState('-');
     const [ formDataOne, setFormDataOne ] = useState({
         openWorld: true,
         actionAdventure: true,
-        rts: true
+        rts: true,
+        rolePlaying: true,
+        survival: true,
+        horror: true,
+        party: true
     });
 
-    const { openWorld, actionAdventure, rts } = formDataOne;
+    const { openWorld, actionAdventure, rts, rolePlaying, survival, horror, party } = formDataOne;
 
     const changeFormOne = e => {
         setFormDataOne({ ...formDataOne, [e.target.name]: e.target.checked });
@@ -53,7 +56,7 @@ const ProductListing = ({ searchQuery }) => {
     }
 
     const resetForms = e => {
-        setFormDataOne({ ...formDataOne, openWorld: true, actionAdventure: true, rts: true });
+        setFormDataOne({ ...formDataOne, openWorld: true, actionAdventure: true, rts: true, rolePlaying: true, survival: true, horror: true, party: true });
         setFormDataTwo({ ...formDataTwo, aboveOne: false, aboveTwo: false, aboveThree: false, aboveFour: false });
         setFormDataThree({ ...formDataThree, slider: 5000 });
     }
@@ -71,20 +74,25 @@ const ProductListing = ({ searchQuery }) => {
     }
 
     useEffect(() => {
-        setProds(products)
-    }, [products])
-
-    useEffect(() => {
-        if(aboveFour) {
-            setProds([ ...products.filter(product => product.stars >= 4).filter(product => parseInt(product.price) <= slider).filter(product => (openWorld && product.category === 'openWorld') || (actionAdventure && product.category === 'actionAdventure') || (rts && product.category === 'rts')) ])
-        } else if(aboveThree) {
-            setProds([ ...products.filter(product => product.stars >= 3).filter(product => parseInt(product.price) <= slider).filter(product => (openWorld && product.category === 'openWorld') || (actionAdventure && product.category === 'actionAdventure') || (rts && product.category === 'rts')) ])
-        } else if(aboveTwo) {
-            setProds([ ...products.filter(product => product.stars >= 2).filter(product => parseInt(product.price) <= slider).filter(product => (openWorld && product.category === 'openWorld') || (actionAdventure && product.category === 'actionAdventure') || (rts && product.category === 'rts')) ])
-        } else {
-            setProds([ ...products.filter(product => product.stars >= 1).filter(product => parseInt(product.price) <= slider).filter(product => (openWorld && product.category === 'openWorld') || (actionAdventure && product.category === 'actionAdventure') || (rts && product.category === 'rts')) ])
-        }
-    }, [slider, aboveOne, aboveTwo, aboveThree, aboveFour, openWorld, actionAdventure, rts, products]);
+        dispatchState({
+            type: 'FILTER_PRODUCTS',
+            payload: {
+                slider,
+                aboveOne,
+                aboveTwo,
+                aboveThree,
+                aboveFour,
+                openWorld,
+                actionAdventure,
+                rts,
+                rolePlaying,
+                survival,
+                horror,
+                party,
+                products
+            }
+        })
+    }, [slider, aboveOne, aboveTwo, aboveThree, aboveFour, openWorld, actionAdventure, rts, rolePlaying, survival, horror, party, products, dispatchState]);
 
     return (
         <main className="main product-display flex-center align-start">
@@ -118,6 +126,30 @@ const ProductListing = ({ searchQuery }) => {
                                     <div className="remember">
                                         <input name='rts' type="checkbox" checked={rts} onChange={changeFormOne} />
                                         <label htmlFor="password x-small">RTS</label>
+                                    </div>
+                                </div>
+                                <div className="form-item flex flex-col align-start misc-inputs">
+                                    <div className="remember">
+                                        <input name='rolePlaying' type="checkbox" checked={rolePlaying} onChange={changeFormOne} />
+                                        <label htmlFor="password x-small">Role-Playing</label>
+                                    </div>
+                                </div>
+                                <div className="form-item flex flex-col align-start misc-inputs">
+                                    <div className="remember">
+                                        <input name='survival' type="checkbox" checked={survival} onChange={changeFormOne} />
+                                        <label htmlFor="password x-small">Survival</label>
+                                    </div>
+                                </div>
+                                <div className="form-item flex flex-col align-start misc-inputs">
+                                    <div className="remember">
+                                        <input name='horror' type="checkbox" checked={horror} onChange={changeFormOne} />
+                                        <label htmlFor="password x-small">Horror</label>
+                                    </div>
+                                </div>
+                                <div className="form-item flex flex-col align-start misc-inputs">
+                                    <div className="remember">
+                                        <input name='party' type="checkbox" checked={party} onChange={changeFormOne} />
+                                        <label htmlFor="password x-small">Party</label>
                                     </div>
                                 </div>
                             </form>

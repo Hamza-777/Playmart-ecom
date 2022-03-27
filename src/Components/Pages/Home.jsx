@@ -21,7 +21,7 @@ const Home = () => {
                 <div className="trending-games flex align-center">
                     {
                         products && products.map(product => (
-                            <Card key={product._id} id={product._id} imgSrc={product.imgSrc} title={product.title} price={product.price} stars={product.stars} />
+                            product.stars >= 4 && <Card key={product._id} id={product._id} imgSrc={product.imgSrc} title={product.title} price={product.price} stars={product.stars} />
                         ))
                     }
                 </div>

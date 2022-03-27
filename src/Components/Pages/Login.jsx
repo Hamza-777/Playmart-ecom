@@ -34,11 +34,11 @@ const Login = () => {
                 <h2 className="form-title">LOGIN</h2>
                 <form className="login-signup-form flex flex-col align-center" onSubmit={submitHandler}>
                     <div className="form-item flex flex-col align-start">
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input type="email" name="email" placeholder="Enter your email" value={email} onChange={changeHandler} />
                     </div>
                     <div className="form-item flex flex-col align-start">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <div className="pass">
                             <input type={type} name="password" placeholder="Enter your password" className="password" value={password} onChange={changeHandler} />
                             <i className={`far ${eye} togglePassword`} onClick={toggleView}></i>
@@ -47,7 +47,7 @@ const Login = () => {
                     <div className="form-item flex flex-col align-start misc-inputs">
                         <div className="remember">
                             <input type="checkbox" name="checked" id="remember" checked={checked} onChange={changeHandler} />
-                            <label for="password small">Remember Me</label>
+                            <label htmlFor="password" className='small'>Remember Me</label>
                         </div>
                         <a href="!#" className="forgot">Forgot password?</a>
                     </div>
