@@ -84,7 +84,7 @@ const ProductListing = ({ searchQuery }) => {
         } else {
             setProds([ ...products.filter(product => product.stars >= 1).filter(product => parseInt(product.price) <= slider).filter(product => (openWorld && product.category === 'openWorld') || (actionAdventure && product.category === 'actionAdventure') || (rts && product.category === 'rts')) ])
         }
-    }, [slider, aboveOne, aboveTwo, aboveThree, aboveFour, openWorld, actionAdventure, rts]);
+    }, [slider, aboveOne, aboveTwo, aboveThree, aboveFour, openWorld, actionAdventure, rts, products]);
 
     return (
         <main className="main product-display flex-center align-start">
