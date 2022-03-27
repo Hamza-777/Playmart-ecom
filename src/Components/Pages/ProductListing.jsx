@@ -55,7 +55,7 @@ const ProductListing = ({ searchQuery }) => {
     const resetForms = e => {
         setFormDataOne({ ...formDataOne, openWorld: true, actionAdventure: true, rts: true });
         setFormDataTwo({ ...formDataTwo, aboveOne: false, aboveTwo: false, aboveThree: false, aboveFour: false });
-        setFormDataThree({ ...formDataThree, slider: 20000 });
+        setFormDataThree({ ...formDataThree, slider: 5000 });
     }
 
     const resizeFormOne = e => {
