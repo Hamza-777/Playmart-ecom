@@ -1,0 +1,50 @@
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--white-color);
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.logo > i {
+    font-size: 2rem;
+}
+
+.logo > h1 {
+    font-size: 3rem;
+    font-family: var(--font-comforter);
+}
+
+.search-bar {
+    border-bottom: 1px solid var(--dark-color);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+#search-bar {
+    width: 20rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    background: var(--white-color);
+    color: var(--dark-color);
+    transition: var(--default-transition);
+}
+
+#search-bar::placeholder {
+    color: var(--dark-color);
+}
+
+.search {
+    background: transparent;
+    color: var(--dark-color);
+    padding: 0.5rem;
+}
+
+.navbar-right {
+    gap: 2rem;
+}
