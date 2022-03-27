@@ -1,0 +1,19 @@
+.wishlist {
+    gap: 3rem;
+}
+
+.wishlist > h1 {
+    align-self: center;
+}
+
+.wishlist-content {
+    gap: 2rem;
+}
+
+.card-dismiss:hover {
+    background: var(--light-black-9);
+}
+
+.card-dismiss > i {
+    font-size: 1.5rem;
+}

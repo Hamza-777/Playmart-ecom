@@ -1,0 +1,90 @@
+/* Form */
+
+.form-container {
+    margin: 1rem auto;
+    background: var(--white-color);
+    width: 30rem;
+    gap: 2rem;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.login-signup-form {
+    width: 100%;
+    gap: 1rem;
+}
+
+.form-title {
+    align-self: center;
+    font-family: var(--font-quintessential);
+}
+
+.login-signup-form .form-item {
+    gap: 0.25rem;
+    width: 90%;
+}
+
+label,
+input[type='number'],
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='submit'],
+button[type='submit'] {
+    font-size: 1.25rem;
+}
+
+input[type='number'],
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='submit'],
+button[type='submit'] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+}
+
+.misc-inputs,
+.remember {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.misc-inputs > a {
+    margin-left: auto;
+}
+
+.misc-inputs > a:hover {
+    text-shadow: 5px 5px 6px rgba(36,137,206,0.7);
+}
+
+.forgot {
+    color: var(--primary-color);
+}
+
+.pass {
+    width: 100%;
+    position: relative;
+}
+
+.togglePassword {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    cursor: pointer;
+}
+
+input[type='submit'],
+button[type='submit'] {
+    background: var(--primary-color);
+    color: var(--white-color);
+    cursor: pointer;
+    outline: none;
+}
+
+input[type='checkbox'] {
+    margin-right: 0.5rem;
+}
