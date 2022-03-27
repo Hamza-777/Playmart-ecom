@@ -1,0 +1,46 @@
+.product-display {
+    gap: 2rem;
+}
+
+.form-container-filter {
+    flex: 0.2;
+    gap: 1rem;
+}
+
+.product-list {
+    flex: 0.8;
+    gap: 2rem;
+    border-left: 1px solid var(--light-black-2);
+    padding: 0 1rem;
+}
+
+.filter-header,
+.form-header {
+    padding: 0.5rem 0.25rem;
+}
+
+.minimize {
+    font-size: 2rem;
+}
+
+.filter-form > .misc-inputs {
+    padding: 0.1rem 0.25rem;
+}
+
+.filter-form > .form-item > .remember > input {
+    margin-right: 1rem;
+}
+
+.filter-form > .form-item > .remember > label {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.prices {
+    width: 100%;
+}
+
+input[type='range'] {
+    width: 100%;
+    margin-top: 1rem;
+}

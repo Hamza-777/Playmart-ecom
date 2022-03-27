@@ -1,0 +1,96 @@
+.cart-content {
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.cart-left {
+    flex: 0.8;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-right: 1px solid var(--light-black-3);
+}
+
+.cart-left input[type='number'] {
+    border: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.address {
+    background: var(--white-color);
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--light-black-1);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 5px;
+}
+
+.address-left {
+    gap: 1rem;
+}
+
+.address-right > .btn {
+    background: var(--black-color);
+    color: var(--white-color);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.cart-left > .card-horizontal {
+    width: 100%;
+}
+
+.cart-right {
+    flex: 0.5;
+    gap: 1.25rem;
+    padding: 0.5rem;
+}
+
+.cart-right > .btn {
+    background: var(--white-color);
+}
+
+.coupon-form,
+.coupon-form > .form-item {
+    width: 100%;
+}
+
+.coupon-form {
+    margin-bottom: 1rem;
+}
+
+.coupon-form > .form-item {
+    gap: 1rem;
+}
+
+.coupon-form > .form-item > input[type='text'] {
+    flex: 0.7;
+}
+
+.coupon-form > .form-item > button[type='submit'] {
+    flex: 0.3;
+    gap: 0.1rem;
+    font-size: 1.25rem;
+}
+
+.bill {
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.bill-item {
+    width: 100%;
+}
+
+.cart-right > button {
+    align-self: center;
+    width: 100%;
+}
+
+.quantity {
+    gap: 2rem;
+}
+
+.quantity > input {
+    width: 5rem;
+}
