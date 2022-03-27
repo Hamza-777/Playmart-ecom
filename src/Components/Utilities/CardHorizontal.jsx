@@ -83,7 +83,7 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
         } else {
             notInitialRender.current = true;
         }
-    }, [quantity])
+    }, [quantity, dispatchCart, id, prevQuantity])
 
     return (
         <div className="card card-horizontal">
