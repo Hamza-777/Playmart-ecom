@@ -21,7 +21,7 @@ const Card = ({ id, imgSrc, title, price, stars, wish = "far fa-heart" }) => {
 
     const addedToWishList = () => toast.success('Added to wishlist successfully!', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -31,7 +31,7 @@ const Card = ({ id, imgSrc, title, price, stars, wish = "far fa-heart" }) => {
 
     const removedFromWishList = () => toast.error('Removed from wishlist successfully!', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -41,7 +41,7 @@ const Card = ({ id, imgSrc, title, price, stars, wish = "far fa-heart" }) => {
 
     const addedToCart = () => toast.success('Added to cart successfully!', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -25,7 +25,7 @@ const Cart = () => {
                             <p className="small">Amravati Road, Weekly Bazar, Chandur Rly</p>
                         </div>
                         <div className="address-right">
-                            <a href="!#" className="btn btn-link flex-center"><i className="fa-solid fa-pen"></i></a>
+                            <a href="!#" className="btn btn-link flex-center">Edit</a>
                         </div>
                     </div>
                     {

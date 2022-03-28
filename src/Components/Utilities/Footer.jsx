@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../Styles/Footer.css';
 
 const Footer = () => {
@@ -44,9 +45,9 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <a href="index.html" className="logo">
+            <Link to="/" className="logo">
                 <p>&copy; 2022 PlayMart</p>
-            </a>
+            </Link>
         </footer>
     )
 }

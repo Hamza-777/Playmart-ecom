@@ -70,8 +70,9 @@
 .trending-games {
     width: 100%;
     gap: 1rem;
-    overflow-x: scroll;
+    overflow-x: auto;
     padding: 1rem 0.75rem;
+    margin-bottom: 3rem;
 }
 
 .trending-games::-webkit-scrollbar {
@@ -84,7 +85,7 @@
 }
 
 .trending-games::-webkit-scrollbar-track {
-    margin: 0 30rem;
+    margin: 0 25rem;
     border-radius: 1rem;
 }
 

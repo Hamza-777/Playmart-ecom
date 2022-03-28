@@ -20,7 +20,7 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
 
     const addedToWishList = () => toast.success('Added to wishlist successfully!', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -30,7 +30,7 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
 
     const removedFromCart = () => toast.error('Removed from cart successfully!', {
         position: "top-center",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
