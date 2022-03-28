@@ -105,6 +105,11 @@
     margin-left: 0;
 }
 
+
+#to-cart {
+    background: var(--green-color);
+}
+
 .card-tools>.buttons>button {
     padding: 1rem 1.2rem;
     transition: var(--default-transition);
@@ -115,7 +120,6 @@
 }
 
 .card-tools>.buttons>button:hover {
-    background: var(--black-color);
     transform: scale(0.98);
 }
 

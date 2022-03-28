@@ -217,7 +217,7 @@ const ProductListing = ({ searchQuery }) => {
                 {
                     prods && prods.map(product => (
                         (product.title && product.title.toLowerCase().indexOf(searchQuery) !== -1) ? (
-                            <Card key={product._id} id={product._id} imgSrc={product.imgSrc} title={product.title} price={product.price} stars={product.stars} />
+                            <Card key={product._id} id={product._id} imgSrc={product.imgSrc} title={product.title} price={product.price} stars={product.stars} inWishList={product.inWishList} inCart={product.inCart} />
                         ) : ''
                     ))
                 }

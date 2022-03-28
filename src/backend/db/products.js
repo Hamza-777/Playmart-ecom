@@ -12,7 +12,9 @@ export const products = [
         imgSrc: "dauntless.png",
         category: ["actionAdventure", "role-playing"],
         price: "1230",
-        stars: 2.6
+        stars: 2.6,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -20,7 +22,9 @@ export const products = [
         imgSrc: "deadbydaylight.png",
         category: ["survival", 'horror'],
         price: "324",
-        stars: 1.5
+        stars: 1.5,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -28,7 +32,9 @@ export const products = [
         imgSrc: "forhonour.png",
         category: ["actionAdventure"],
         price: "1325",
-        stars: 1.9
+        stars: 1.9,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -36,7 +42,9 @@ export const products = [
         imgSrc: "GOW.png",
         category: ["actionAdventure"],
         price: "1210",
-        stars: 4.5
+        stars: 4.5,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -44,7 +52,9 @@ export const products = [
         imgSrc: "amongus.png",
         category: ["rts", "party", "actionAdventure"],
         price: "60",
-        stars: 2.0
+        stars: 2.0,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -52,7 +62,9 @@ export const products = [
         imgSrc: "cyberpunk.png",
         category: ["actionAdventure", "role-playing"],
         price: "1100",
-        stars: 4.1
+        stars: 4.1,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -60,7 +72,9 @@ export const products = [
         imgSrc: "darkestdungeon2.png",
         category: ["role-playing", "rts"],
         price: "1610",
-        stars: 3.7
+        stars: 3.7,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -68,7 +82,9 @@ export const products = [
         imgSrc: "GTAV.png",
         category: ["openWorld", "actionAdventure"],
         price: "1162",
-        stars: 4.2
+        stars: 4.2,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -76,7 +92,9 @@ export const products = [
         imgSrc: "reddead2.jpg",
         category: ["actionAdventure", "openWorld"],
         price: "1092",
-        stars: 3.9
+        stars: 3.9,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -84,7 +102,9 @@ export const products = [
         imgSrc: "ruinedking.png",
         category: ["rts", "role-playing", "actionAdventure"],
         price: "750",
-        stars: 3.1
+        stars: 3.1,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -92,7 +112,9 @@ export const products = [
         imgSrc: "borderland3.jpg",
         category: ["role-playing", "actionAdventure"],
         price: "747",
-        stars: 3.2
+        stars: 3.2,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -100,7 +122,9 @@ export const products = [
         imgSrc: "bluefire.jpg",
         category: ["actionAdventure"],
         price: "351",
-        stars: 2.5
+        stars: 2.5,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -108,7 +132,9 @@ export const products = [
         imgSrc: "farcry6.jpg",
         category: ["actionAdventure"],
         price: "1499",
-        stars: 4.3
+        stars: 4.3,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -116,7 +142,9 @@ export const products = [
         imgSrc: "back4blood.jpg",
         category: ["actionAdventure"],
         price: "1499",
-        stars: 3.5
+        stars: 3.5,
+        inWishList: false,
+        inCart: false
     },
     {
         _id: uuid(),
@@ -124,6 +152,8 @@ export const products = [
         imgSrc: "tinytinaswonderland.jpg",
         category: ["role-playing", "actionAdventure"],
         price: "3299",
-        stars: 4.0
+        stars: 4.0,
+        inWishList: false,
+        inCart: false
     },
 ];

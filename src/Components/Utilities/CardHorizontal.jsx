@@ -1,21 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CardHorizontal = ({ id, imgSrc, title, price }) => {
+const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
     const [ quantity, setQuantity ] = useState(1);
     const [ prevQuantity, setPrevQuantity ] = useState(quantity);
+    const { products, setProducts } = useProduct();
     const { wishList, dispatch } = useWishList();
     const { dispatchCart } = useCart();
     const notInitialRender = useRef(false);
 
-    const payload = {
-        _id: id,
-        imgSrc,
-        title,
-        price
+    const updateWishListStatus = () => {
+        const index = products.map((product, idx) => [product._id === id, idx]).filter(item => item[0] === true)[0][1];
+        const newList = [...products];
+        newList[index].inWishList = !newList[index].inWishList;
+        setProducts([...newList]);
+        return newList[index].inWishList;
+    }
+
+    const updateCartStatus = () => {
+        const index = products.map((product, idx) => [product._id === id, idx]).filter(item => item[0] === true)[0][1];
+        const newList = [...products];
+        newList[index].inCart = !newList[index].inCart;
+        setProducts([...newList]);
+        return newList[index].inCart;
     }
 
     const addedToWishList = () => toast.success('Added to wishlist successfully!', {
@@ -43,6 +54,7 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
             type: 'REMOVE_ITEM',
             payload: id
         });
+        updateCartStatus();
         removedFromCart();
     }
 
@@ -51,14 +63,28 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
             if(wishList.wishes.filter(item => item._id === id).length === 0) {
                 dispatch({
                     type: "ADD_WISH",
-                    payload: payload
+                    payload: {
+                        _id: id,
+                        imgSrc,
+                        title,
+                        price,
+                        inWishList: updateWishListStatus(),
+                        inCart
+                    }
                 });
                 addedToWishList();
             }
         } else {
             dispatch({
                 type: "ADD_WISH",
-                payload: payload
+                payload: {
+                    _id: id,
+                    imgSrc,
+                    title,
+                    price,
+                    inWishList: updateWishListStatus(),
+                    inCart
+                }
             });
             addedToWishList();
         }

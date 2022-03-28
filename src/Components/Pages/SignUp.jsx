@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/LoginSignup.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUp = () => {
     const [ typePass, setTypePass ] = useState('password');
@@ -20,7 +21,7 @@ const SignUp = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const submitHandler = async e => {
+    const submitHandler = e => {
         setFormData({ ...formData, name: '', email: '', password: '', confirmPassword: '' });
         e.preventDefault();
     }
@@ -34,6 +35,17 @@ const SignUp = () => {
         typePassConf === 'password' ? setTypePassConf('text') : setTypePassConf('password');
         setEyePassConf(eyePassConf === 'fa-eye' ? 'fa-eye-slash' : 'fa-eye');
     }
+
+    const sendReq = async () => {
+        const response = await axios.post('/api/auth/signup', {
+                name: 'Hamza',
+                email: 'hamza@gmail.com',
+                password: 'hamza123'
+            }
+        )
+        console.log(response.data);
+    }
+    sendReq()
 
     return (
         <main className="main">
