@@ -20,6 +20,10 @@ const reducer = (state, action) => {
                 ...state,
                 wishes: state.wishes.filter(wish => wish._id !== payload)
             }
+        case 'UPDATE_STATUS':
+            const index = state.wishes.map((product, idx) => [product._id === payload[0], idx]).filter(item => item[0] === true)[0][1];
+            state.wishes[index].inCart = payload[1];
+            return state;
         default:
             return state;
     }

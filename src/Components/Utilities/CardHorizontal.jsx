@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
+const CardHorizontal = ({ id, imgSrc, title, price, stars, inCart }) => {
+    const location = useLocation().pathname;
     const [ quantity, setQuantity ] = useState(1);
     const [ prevQuantity, setPrevQuantity ] = useState(quantity);
     const { products, setProducts } = useProduct();
@@ -56,6 +58,12 @@ const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
         });
         updateCartStatus();
         removedFromCart();
+        if(location === '/cart' && wishList.wishes.length > 0) {
+            dispatch({
+                type: 'UPDATE_STATUS',
+                payload: [id, false]
+            });
+        }
     }
 
     const addToWishList = e => {
@@ -68,6 +76,7 @@ const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
                         imgSrc,
                         title,
                         price,
+                        stars,
                         inWishList: updateWishListStatus(),
                         inCart
                     }
@@ -82,6 +91,7 @@ const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
                     imgSrc,
                     title,
                     price,
+                    stars,
                     inWishList: updateWishListStatus(),
                     inCart
                 }
@@ -123,7 +133,7 @@ const CardHorizontal = ({ id, imgSrc, title, price, inWishList, inCart }) => {
                         <h5>₹{price}</h5>
                     </div>
                     <div className="quantity flex-center">
-                        <label for="password">Quantity: </label>
+                        <label htmlFor="password">Quantity: </label>
                         <input type="number" className="number" min="0" value={quantity} onChange={changeQuantity} />
                     </div>
                     <div className="card-tools">

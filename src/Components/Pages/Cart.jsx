@@ -33,7 +33,7 @@ const Cart = () => {
                             </div>
                             {
                                 cart.cart && cart.cart.map(item => (
-                                    <CardHorizontal key={item._id} id={item._id} imgSrc={item.imgSrc} title={item.title} price={item.price} inWishList={item.inWishList} inCart={item.inCart} />
+                                    <CardHorizontal key={item._id} id={item._id} imgSrc={item.imgSrc} title={item.title} price={item.price} stars={item.stars} inWishList={item.inWishList} inCart={item.inCart} />
                                 ))
                             }
                         </div>

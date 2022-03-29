@@ -3,14 +3,17 @@ import '../Styles/Card.css';
 import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
+import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
+    const location = useLocation().pathname;
     const { products, setProducts } = useProduct();
     const { wishList, dispatch } = useWishList();
     const { cart, dispatchCart } = useCart();
     const [ wishClass, setWishClass ] = useState('');
+    const [ inCartStatus, setInCartStatus ] = useState(false);
 
     const updateWishListStatus = () => {
         const index = products.map((product, idx) => [product._id === id, idx]).filter(item => item[0] === true)[0][1];
@@ -107,6 +110,13 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
     const addToCart = e => {
         if(cart.cart.length) {
             if(cart.cart.filter(item => item._id === id).length === 0) {
+                if(location === '/wishlist') {
+                    dispatch({
+                        type: 'UPDATE_STATUS',
+                        payload: [id, true]
+                    });
+                    setInCartStatus(true);
+                }
                 dispatchCart({
                     type: "ADD_ITEM",
                     payload: {
@@ -123,6 +133,13 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
                 addedToCart();
             }
         } else {
+            if(location === '/wishlist') {
+                dispatch({
+                    type: 'UPDATE_STATUS',
+                    payload: [id, true]
+                });
+                setInCartStatus(true);
+            }
             dispatchCart({
                 type: "ADD_ITEM",
                 payload: {
@@ -160,7 +177,7 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
             </div>
             <div className="card-tools">
                 <div className="buttons">
-                    <button className="btn" id={inCart ? 'to-cart' : ''}  onClick={addToCart}>{inCart ? 'Go' : 'Add'} To Cart</button>
+                    <button className="btn" id={ inCartStatus === true ? 'to-cart' : inCart ? 'to-cart' : '' }  onClick={addToCart}>{ inCartStatus === true ? 'Added' : inCart ? 'Added' : 'Add' } To Cart</button>
                 </div>
                 <div className="icons">
                     <div className="icon-container to-wishlist"><i className={wishClass} onClick={updateWishList}></i></div>
