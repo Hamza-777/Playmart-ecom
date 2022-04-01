@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import '../Styles/LoginSignup.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { setAuth } from '../Utilities/localStorage';
+import { useAuth } from '../Providers/AuthProvider';
+import axios from 'axios';
+import { unauthorized } from '../Utilities/toasts';
 
 const Login = () => {
+    const { dispatchAuth } = useAuth();
+    const [ goto, setGoto ] = useState(false);
     const [ type, setType ] = useState('password');
     const [ eye, setEye ] = useState('fa-eye');
     const [ formData, setFormData ] = useState({
@@ -18,7 +24,16 @@ const Login = () => {
     }
 
     const submitHandler = e => {
-        console.log(formData);
+        sendReq({
+            email,
+            password
+        }).then(res => {
+            dispatchAuth({
+                type: 'LOGGED_IN',
+                payload: res === undefined ? null : res
+            });
+            setGoto(res === undefined ? false : true);
+        });
         setFormData({ ...formData, email: '', password: '' });
         e.preventDefault();
     }
@@ -28,6 +43,20 @@ const Login = () => {
         setEye(eye === 'fa-eye' ? 'fa-eye-slash' : 'fa-eye');
     }
 
+    const sendReq = async (body) => {
+        try {
+            const response = await axios.post('/api/auth/login', body);
+            setAuth(response.data.encodedToken);
+            return response.data.encodedToken;
+        } catch (err) {
+            unauthorized();
+        }
+    }
+
+    if(goto) {
+        return <Navigate to='/' />;
+    }
+
     return (
         <main className="main">
             <div className="form-container flex flex-col align-stretch">
@@ -35,7 +64,7 @@ const Login = () => {
                 <form className="login-signup-form flex flex-col align-center" onSubmit={submitHandler}>
                     <div className="form-item flex flex-col align-start">
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" placeholder="Enter your email" value={email} onChange={changeHandler} />
+                        <input type="email" name="email" placeholder="Enter your email" value={email} onChange={changeHandler} required />
                     </div>
                     <div className="form-item flex flex-col align-start">
                         <label htmlFor="password">Password</label>

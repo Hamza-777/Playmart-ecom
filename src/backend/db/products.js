@@ -8,6 +8,16 @@ import { v4 as uuid } from "uuid";
 export const products = [
     {
         _id: uuid(),
+        title: "Tiny Tina's Wonderland",
+        imgSrc: "tinytinaswonderland.jpg",
+        category: ["role-playing", "actionAdventure"],
+        price: "3299",
+        stars: 4.0,
+        inWishList: false,
+        inCart: false
+    },
+    {
+        _id: uuid(),
         title: "Dauntless",
         imgSrc: "dauntless.png",
         category: ["actionAdventure", "role-playing"],
@@ -145,15 +155,5 @@ export const products = [
         stars: 3.5,
         inWishList: false,
         inCart: false
-    },
-    {
-        _id: uuid(),
-        title: "Tiny Tina's Wonderland",
-        imgSrc: "tinytinaswonderland.jpg",
-        category: ["role-playing", "actionAdventure"],
-        price: "3299",
-        stars: 4.0,
-        inWishList: false,
-        inCart: false
-    },
+    }
 ];

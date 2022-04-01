@@ -16,7 +16,7 @@ const Cart = () => {
 
     return (
         <main className="main wishlist flex flex-col align-center">
-            <h1>My Cart</h1>
+            <h1>My Cart ({cart.cart.length})</h1>
             {
                 cart.cart.length > 0 ? (
                     <section className="cart-content flex-center align-start">

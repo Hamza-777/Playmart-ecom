@@ -3,8 +3,8 @@ import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
 import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { addedToWishList, removedFromCart } from './toasts';
 
 const CardHorizontal = ({ id, imgSrc, title, price, stars, inCart }) => {
     const location = useLocation().pathname;
@@ -30,26 +30,6 @@ const CardHorizontal = ({ id, imgSrc, title, price, stars, inCart }) => {
         setProducts([...newList]);
         return newList[index].inCart;
     }
-
-    const addedToWishList = () => toast.success('Added to wishlist successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
-    const removedFromCart = () => toast.error('Removed from cart successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
 
     const removeFromCart = e => {
         dispatchCart({

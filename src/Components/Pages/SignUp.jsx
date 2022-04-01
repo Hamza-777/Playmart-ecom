@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import '../Styles/LoginSignup.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { setAuth } from '../Utilities/localStorage';
+import { useAuth } from '../Providers/AuthProvider';
+import { passwordsNotSame, userExists } from '../Utilities/toasts';
 
 const SignUp = () => {
+    const { dispatchAuth } = useAuth();
+    const [ goto, setGoto ] = useState(false);
     const [ typePass, setTypePass ] = useState('password');
     const [ typePassConf, setTypePassConf ] = useState('password');
     const [ eyePass, setEyePass ] = useState('fa-eye');
@@ -22,7 +28,23 @@ const SignUp = () => {
     }
 
     const submitHandler = e => {
-        setFormData({ ...formData, name: '', email: '', password: '', confirmPassword: '' });
+        if(password === confirmPassword) {
+            sendReq({
+                name,
+                email,
+                password
+            }).then(res => {
+                dispatchAuth({
+                    type: 'SIGNED_UP',
+                    payload: res === undefined ? null : res
+                });
+                setGoto(res === undefined ? false : true);
+            });
+            setFormData({ ...formData, name: '', email: '', password: '', confirmPassword: '' });
+        } else {
+            passwordsNotSame();
+            setFormData({ ...formData, password: '', confirmPassword: '' });
+        }
         e.preventDefault();
     }
 
@@ -36,16 +58,21 @@ const SignUp = () => {
         setEyePassConf(eyePassConf === 'fa-eye' ? 'fa-eye-slash' : 'fa-eye');
     }
 
-    const sendReq = async () => {
-        const response = await axios.post('/api/auth/signup', {
-                name: 'Hamza',
-                email: 'hamza@gmail.com',
-                password: 'hamza123'
+    const sendReq = async (body) => {
+        try {
+            const response = await axios.post('/api/auth/signup', body);
+            setAuth(response.data.encodedToken);
+            return response.data.encodedToken;
+        } catch (err) {
+            if(err.response.status === 422) {
+                userExists();
             }
-        )
-        console.log(response.data);
+        }
     }
-    sendReq()
+
+    if(goto) {
+        return <Navigate to='/' />;
+    }
 
     return (
         <main className="main">
@@ -54,16 +81,16 @@ const SignUp = () => {
                 <form className="login-signup-form flex flex-col align-center" onSubmit={submitHandler}>
                     <div className="form-item flex flex-col align-start">
                         <label htmlFor="name">Name</label>
-                        <input type="text" placeholder="Enter your name" name="name" value={name} onChange={changeHandler} />
+                        <input type="text" placeholder="Enter your name" name="name" value={name} onChange={changeHandler} required />
                     </div>
                     <div className="form-item flex flex-col align-start">
                         <label htmlFor="email">Email</label>
-                        <input type="email" placeholder="Enter your email" name="email" value={email} onChange={changeHandler} />
+                        <input type="email" placeholder="Enter your email" name="email" value={email} onChange={changeHandler} required />
                     </div>
                     <div className="form-item flex flex-col align-start">
                         <label htmlFor="password">Password</label>
                         <div className="pass">
-                            <input type={typePass} placeholder="Enter your password" className="password pass1" name="password" value={password} onChange={changeHandler} />
+                            <input type={typePass} placeholder="Enter your password" className="password pass1" name="password" value={password} onChange={changeHandler} minLength={7} />
                             <i className={`far ${eyePass} togglePassword`} onClick={toggleTypePass}></i>
                         </div>
                     </div>

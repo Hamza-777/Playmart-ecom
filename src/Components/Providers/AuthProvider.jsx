@@ -1,14 +1,28 @@
 import React, { useContext, createContext, useReducer } from 'react';
+import { getAuth } from '../Utilities/localStorage';
 
 const authContext = createContext(null);
 
 const initialAuth = {
-    userLoggedIn: false,
-    userInfo: null
+    userLoggedIn: getAuth() ? true : false,
+    token: getAuth()
 }
 
 const reducer = (state, { type, payload }) => {
     switch(type) {
+        case 'LOGGED_IN':
+        case 'SIGNED_UP':
+            return {
+                ...state,
+                userLoggedIn: payload ? true : false,
+                token: payload
+            }
+        case 'LOGGED_OUT':
+            return {
+                ...state,
+                userLoggedIn: false,
+                token: null
+            }
         default:
             return state;
     }

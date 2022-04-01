@@ -1,16 +1,29 @@
 import React from 'react';
 import '../Styles/Navbar.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Navigate } from 'react-router-dom';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
+import { useAuth } from '../Providers/AuthProvider';
+import { removeAuth } from './localStorage';
 
 const Navbar = ({ getSearchQuery }) => {
     const location = useLocation().pathname;
     const { wishList } = useWishList();
     const { cart } = useCart();
+    const { authState: { userLoggedIn }, dispatchAuth } = useAuth();
 
     const changeSearchQuery = e => {
         getSearchQuery(e.target.value);
+    }
+
+    const logoutUser = e => {
+        if(e.target.name === 'Logout') {
+            removeAuth();
+            dispatchAuth({
+                type: 'LOGGED_OUT'
+            })
+            return <Navigate to='/login' />;
+        }
     }
 
     return (
@@ -31,17 +44,17 @@ const Navbar = ({ getSearchQuery }) => {
                 )
             }
             <div className="navbar-right flex-center">
-                <Link to="/login" className="btn btn-login">LogIn / SignUp</Link>
+                <Link to="/login" className="btn btn-login" name={userLoggedIn ? 'Logout' : 'LogIn / SignUp'} onClick={logoutUser}>{userLoggedIn ? 'Logout' : 'LogIn / SignUp'}</Link>
                 <Link to="/wishlist" className="btn btn-link">
                     <i className="fas fa-heart icon"></i>
-                    <span className="small">WishList</span>
+                    <span className="small">My WishList</span>
                     {
                         wishList.wishes.length > 0 ? <span className="badge small">{wishList.wishes.length}</span> : ''
                     }
                 </Link>
                 <Link to="/cart" className="btn btn-link">
                     <i className="fas fa-shopping-cart icon"></i>
-                    <span className="small">Your Cart</span>
+                    <span className="small">My Cart</span>
                     {
                         cart.cart.length > 0 ? <span className="badge small">{cart.cart.length}</span> : ''
                     }

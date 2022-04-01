@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/Card.css';
+import { useAuth } from '../Providers/AuthProvider';
 import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
 import { useLocation } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { addedToWishList, removedFromWishList, addedToCart, loginToProceed } from './toasts';
 
 const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
     const location = useLocation().pathname;
+    const { authState: { userLoggedIn } } = useAuth();
     const { products, setProducts } = useProduct();
     const { wishList, dispatch } = useWishList();
     const { cart, dispatchCart } = useCart();
@@ -30,36 +32,6 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
         setProducts([...newList]);
         return newList[index].inCart;
     }
-
-    const addedToWishList = () => toast.success('Added to wishlist successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
-    const removedFromWishList = () => toast.error('Removed from wishlist successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
-    const addedToCart = () => toast.success('Added to cart successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
 
     const updateWishList = e => {
         if(wishClass === "far fa-heart") {
@@ -177,10 +149,10 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
             </div>
             <div className="card-tools">
                 <div className="buttons">
-                    <button className="btn" id={ inCartStatus === true ? 'to-cart' : inCart ? 'to-cart' : '' }  onClick={addToCart}>{ inCartStatus === true ? 'Added' : inCart ? 'Added' : 'Add' } To Cart</button>
+                    <button className="btn" id={ inCartStatus === true ? 'to-cart' : inCart ? 'to-cart' : '' }  onClick={userLoggedIn ? addToCart : loginToProceed}>{ inCartStatus === true ? 'Added' : inCart ? 'Added' : 'Add' } To Cart</button>
                 </div>
                 <div className="icons">
-                    <div className="icon-container to-wishlist"><i className={wishClass} onClick={updateWishList}></i></div>
+                    <div className="icon-container to-wishlist"><i className={wishClass} onClick={userLoggedIn ? updateWishList : loginToProceed}></i></div>
                 </div>
             </div>
         </div>

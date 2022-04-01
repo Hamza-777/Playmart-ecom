@@ -8,6 +8,7 @@ import SignUp from './Components/Pages/SignUp';
 import Login from './Components/Pages/Login';
 import WishList from './Components/Pages/WishList';
 import Cart from './Components/Pages/Cart';
+import PrivateRoute from './Components/Utilities/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,8 +26,16 @@ function App() {
         <Route path="/product-listing" element={<ProductListing searchQuery={searchQuery} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={
+          <PrivateRoute>
+            <WishList />
+          </PrivateRoute>
+        } />
+        <Route path="/cart" element={
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        } />
       </Routes>
       <Footer />
       <ToastContainer />
