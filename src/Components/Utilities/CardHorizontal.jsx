@@ -1,49 +1,49 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useProduct } from '../Providers/ProductProvider';
 import { useWishList } from '../Providers/WishListProvider';
 import { useCart } from '../Providers/CartProvider';
-import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { addedToWishList, removedFromCart } from './toasts';
 
-const CardHorizontal = ({ id, imgSrc, title, price }) => {
+const CardHorizontal = ({ id, imgSrc, title, price, stars, inCart }) => {
+    const location = useLocation().pathname;
     const [ quantity, setQuantity ] = useState(1);
     const [ prevQuantity, setPrevQuantity ] = useState(quantity);
+    const { products, setProducts } = useProduct();
     const { wishList, dispatch } = useWishList();
     const { dispatchCart } = useCart();
     const notInitialRender = useRef(false);
 
-    const payload = {
-        _id: id,
-        imgSrc,
-        title,
-        price
+    const updateWishListStatus = () => {
+        const index = products.map((product, idx) => [product._id === id, idx]).filter(item => item[0] === true)[0][1];
+        const newList = [...products];
+        newList[index].inWishList = !newList[index].inWishList;
+        setProducts([...newList]);
+        return newList[index].inWishList;
     }
 
-    const addedToWishList = () => toast.success('Added to wishlist successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
-    const removedFromCart = () => toast.error('Removed from cart successfully!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
+    const updateCartStatus = () => {
+        const index = products.map((product, idx) => [product._id === id, idx]).filter(item => item[0] === true)[0][1];
+        const newList = [...products];
+        newList[index].inCart = !newList[index].inCart;
+        setProducts([...newList]);
+        return newList[index].inCart;
+    }
 
     const removeFromCart = e => {
         dispatchCart({
             type: 'REMOVE_ITEM',
             payload: id
         });
+        updateCartStatus();
         removedFromCart();
+        if(location === '/cart' && wishList.wishes.length > 0) {
+            dispatch({
+                type: 'UPDATE_STATUS',
+                payload: [id, false]
+            });
+        }
     }
 
     const addToWishList = e => {
@@ -51,14 +51,30 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
             if(wishList.wishes.filter(item => item._id === id).length === 0) {
                 dispatch({
                     type: "ADD_WISH",
-                    payload: payload
+                    payload: {
+                        _id: id,
+                        imgSrc,
+                        title,
+                        price,
+                        stars,
+                        inWishList: updateWishListStatus(),
+                        inCart
+                    }
                 });
                 addedToWishList();
             }
         } else {
             dispatch({
                 type: "ADD_WISH",
-                payload: payload
+                payload: {
+                    _id: id,
+                    imgSrc,
+                    title,
+                    price,
+                    stars,
+                    inWishList: updateWishListStatus(),
+                    inCart
+                }
             });
             addedToWishList();
         }
@@ -97,7 +113,7 @@ const CardHorizontal = ({ id, imgSrc, title, price }) => {
                         <h5>₹{price}</h5>
                     </div>
                     <div className="quantity flex-center">
-                        <label for="password">Quantity: </label>
+                        <label htmlFor="password">Quantity: </label>
                         <input type="number" className="number" min="0" value={quantity} onChange={changeQuantity} />
                     </div>
                     <div className="card-tools">
