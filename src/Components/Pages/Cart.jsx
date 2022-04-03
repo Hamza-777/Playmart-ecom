@@ -3,6 +3,7 @@ import '../Styles/Cart.css';
 import CardHorizontal from '../Utilities/CardHorizontal';
 import { useCart } from '../Providers/CartProvider';
 import EmptyPage from '../Utilities/EmptyPage';
+import Address from '../Utilities/Address';
 
 const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -20,20 +21,7 @@ const Cart = () => {
       {cart.cart.length > 0 ? (
         <section className='cart-content flex-center align-start'>
           <div className='cart-left flex-center flex-col align-stretch'>
-            <div className='address flex-center justify-between'>
-              <div className='address-left flex-center flex-col align-start'>
-                <p className='h4'>Deliver To: </p>
-                <p className='small'>Hamza Rarani, Amravati, 444904</p>
-                <p className='small'>
-                  Amravati Road, Weekly Bazar, Chandur Rly
-                </p>
-              </div>
-              <div className='address-right'>
-                <a href='!#' className='btn btn-link flex-center'>
-                  Edit
-                </a>
-              </div>
-            </div>
+            <Address />
             {cart.cart &&
               cart.cart.map((item) => (
                 <CardHorizontal
