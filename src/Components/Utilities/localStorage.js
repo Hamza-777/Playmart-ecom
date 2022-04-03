@@ -1,17 +1,13 @@
 const setAuth = (data) => {
-    localStorage.setItem('auth', data);
-}
+  localStorage.setItem('auth', data);
+};
 
 const getAuth = () => {
-    return localStorage.getItem('auth') ? localStorage.getItem('auth') : null;
-}
+  return localStorage.getItem('auth') ? localStorage.getItem('auth') : null;
+};
 
 const removeAuth = () => {
-    localStorage.removeItem('auth');
-}
+  localStorage.removeItem('auth');
+};
 
-export {
-    setAuth,
-    getAuth,
-    removeAuth
-}
+export { setAuth, getAuth, removeAuth };

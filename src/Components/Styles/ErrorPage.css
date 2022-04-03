@@ -1,0 +1,28 @@
+.error-page {
+    position: relative;
+}
+
+.error-page > img {
+    height: 38.75rem;
+}
+
+.error-page > .on-top {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    gap: 3rem;
+}
+
+.error-page > .on-top > h1,
+.error-page > .on-top > p {
+    font-size: 3rem;
+    font-family: var(--font-comforter);
+}
+
+.error-page > .on-top > h1 {
+    font-size: 5rem;
+}
+
+.green {
+    color: var(--green-color);
+}

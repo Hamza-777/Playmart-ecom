@@ -3,8 +3,10 @@ import { useAuth } from '../Providers/AuthProvider';
 import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
-    const { authState: { userLoggedIn } } = useAuth();
-    return userLoggedIn ? children : <Navigate to="/login" />;
-}
+  const {
+    authState: { userLoggedIn },
+  } = useAuth();
+  return userLoggedIn ? children : <Navigate to='/login' />;
+};
 
 export default PrivateRoute;

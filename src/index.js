@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { makeServer } from "./server";
+import { makeServer } from './server';
 import { AuthProvider } from './Components/Providers/AuthProvider';
 import { ProductProvider } from './Components/Providers/ProductProvider';
 import { CartProvider } from './Components/Providers/CartProvider';
