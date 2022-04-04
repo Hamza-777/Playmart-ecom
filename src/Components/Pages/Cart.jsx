@@ -41,8 +41,8 @@ const Cart = () => {
             <form className='coupon-form'>
               <div className='form-item flex-center justify-between'>
                 <input type='text' placeholder='Enter the code' />
-                <button type='submit' className='flex-center'>
-                  <i className='fa-solid fa-tag'></i> Apply
+                <button type='submit' className='flex-center coupon-btn'>
+                  <i className='fa-solid fa-tag'></i> <span>Apply</span>
                 </button>
               </div>
             </form>

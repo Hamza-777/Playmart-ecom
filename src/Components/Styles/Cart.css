@@ -73,6 +73,10 @@
     font-size: 1.25rem;
 }
 
+.coupon-btn > span {
+    margin-left: 1rem;
+}
+
 .bill {
     width: 100%;
     gap: 0.5rem;
@@ -93,4 +97,15 @@
 
 .quantity > input {
     width: 5rem;
+}
+
+@media screen and (max-width: 900px) {
+    .cart-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-left {
+        border-right: none;
+    }
 }

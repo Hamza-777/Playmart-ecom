@@ -291,3 +291,15 @@ input[type='radio'] {
 ::-webkit-scrollbar-thumb {
     background: var(--grey-1-color);
 }
+
+@media screen and (max-width: 900px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 62.5%;
+    }
+}
