@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setAuth } from './localStorage';
+import { getAuth, setAuth } from './localStorage';
 import {
   logInSuccess,
   notFound,
@@ -32,4 +32,21 @@ const sendSignupReq = async (body) => {
   }
 };
 
-export { sendLoginReq, sendSignupReq };
+const sendWishlistAddReq = async (body) => {
+  try {
+    const response = await axios.post(
+      '/api/user/wishlist',
+      { product: body },
+      {
+        headers: {
+          authorization: getAuth(),
+        },
+      }
+    );
+    return response.data.wishlist;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { sendLoginReq, sendSignupReq, sendWishlistAddReq };

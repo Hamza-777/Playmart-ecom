@@ -2,16 +2,12 @@ import React from 'react';
 import Card from '../Utilities/Card';
 import '../Styles/WishList.css';
 import { useWishList } from '../Providers/WishListProvider';
-import { useAuth } from '../Providers/AuthProvider';
 import EmptyPage from '../Utilities/EmptyPage';
 
 const WishList = () => {
   const {
     wishList: { wishes },
   } = useWishList();
-  const { authState } = useAuth();
-
-  console.log(authState);
 
   return (
     <main className='main wishlist flex flex-col align-center'>

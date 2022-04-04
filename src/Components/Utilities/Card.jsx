@@ -12,6 +12,7 @@ import {
   addedToCart,
   loginToProceed,
 } from './toasts';
+import { sendWishlistAddReq } from './requests';
 
 const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
   const location = useLocation().pathname;
@@ -46,38 +47,23 @@ const Card = ({ id, imgSrc, title, price, stars, inWishList, inCart }) => {
 
   const updateWishList = (e) => {
     if (wishClass === 'far fa-heart') {
+      const body = {
+        _id: id,
+        title,
+        imgSrc,
+        price,
+        totalPrice: price,
+        stars,
+        inWishList: updateWishListStatus(),
+        inCart,
+      };
       if (wishList.wishes.length) {
         if (wishList.wishes.filter((item) => item._id === id).length === 0) {
-          updateWishListStatus();
-          dispatch({
-            type: 'ADD_WISH',
-            payload: {
-              _id: id,
-              title,
-              imgSrc,
-              price,
-              totalPrice: price,
-              stars,
-              inWishList: updateWishListStatus(),
-              inCart,
-            },
-          });
+          sendWishlistAddReq(body);
           addedToWishList();
         }
       } else {
-        dispatch({
-          type: 'ADD_WISH',
-          payload: {
-            _id: id,
-            title,
-            imgSrc,
-            price,
-            totalPrice: price,
-            stars,
-            inWishList: updateWishListStatus(),
-            inCart,
-          },
-        });
+        sendWishlistAddReq(body);
         addedToWishList();
       }
     } else {
