@@ -9,6 +9,7 @@ const ProductListing = ({ searchQuery }) => {
     productState: { prods },
     dispatchState,
   } = useProduct();
+  const [displayFilter, setDisplayFilter] = useState(true);
   const [formOneSym, setFormOneSym] = useState('-');
   const [formTwoSym, setFormTwoSym] = useState('-');
   const [formThreeSym, setFormThreeSym] = useState('-');
@@ -168,12 +169,21 @@ const ProductListing = ({ searchQuery }) => {
       <aside className='form-container-filter flex flex-col'>
         <div className='filter-header flex-center justify-between'>
           <h2 className='header-title'>Filter By</h2>
+          <button
+            className='btn small clear toggle-filter'
+            onClick={(e) => setDisplayFilter(!displayFilter)}
+          >
+            toggle filter
+          </button>
           <button className='btn small clear' onClick={resetForms}>
             Clear All
           </button>
         </div>
         <hr className='rule' />
-        <div className='form collection-form'>
+        <div
+          className='form collection-form'
+          style={{ display: displayFilter ? 'block' : 'none' }}
+        >
           <div className='form-header flex-center justify-between'>
             <h3 className='form-title'>Collection</h3>
             <button className='btn small minimize' onClick={resizeFormOne}>
@@ -262,7 +272,10 @@ const ProductListing = ({ searchQuery }) => {
             </form>
           )}
         </div>
-        <div className='form rating-form'>
+        <div
+          className='form rating-form'
+          style={{ display: displayFilter ? 'block' : 'none' }}
+        >
           <div className='form-header flex-center justify-between'>
             <h3 className='form-title'>Rating</h3>
             <button className='btn small minimize' onClick={resizeFormTwo}>
@@ -318,7 +331,10 @@ const ProductListing = ({ searchQuery }) => {
             </form>
           )}
         </div>
-        <div className='form price-form'>
+        <div
+          className='form price-form'
+          style={{ display: displayFilter ? 'block' : 'none' }}
+        >
           <div className='form-header flex-center justify-between'>
             <h3 className='form-title'>Price</h3>
             <button className='btn small minimize' onClick={resizeFormThree}>

@@ -12,3 +12,13 @@
     background: var(--white-color);
     border-radius: 1rem;
 }
+
+@media screen and (max-width: 900px) {
+    .address-modal {
+        width: 70%;
+        margin: 0 auto;
+        padding: 2rem;
+        background: var(--white-color);
+        border-radius: 1rem;
+    }
+}

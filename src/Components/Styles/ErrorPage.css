@@ -26,3 +26,20 @@
 .green {
     color: var(--green-color);
 }
+
+@media screen and (max-width: 900px) {
+    .error-page > .on-top {
+        position: initial;
+        gap: 2rem;
+    }
+
+    .error-page > .on-top > h1,
+    .error-page > .on-top > p {
+        font-size: 2.5rem;
+        font-family: var(--font-comforter);
+    }
+
+    .error-page > .on-top > h1 {
+        font-size: 5rem;
+    }
+}

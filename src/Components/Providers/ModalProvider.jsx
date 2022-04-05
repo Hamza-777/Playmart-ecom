@@ -25,7 +25,7 @@ const reducer = (state, { type, payload }) => {
 };
 
 const ModalProvider = ({ children }) => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalState, dispatchModal] = useReducer(reducer, initialState);
 
   return (

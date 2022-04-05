@@ -34,3 +34,10 @@
 .black {
     color: var(--black-color);
 }
+
+@media screen and (max-width: 900px) {
+    .on-top {
+        position: initial;
+        gap: 2rem;
+    }
+}

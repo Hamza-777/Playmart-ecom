@@ -83,6 +83,14 @@ button[type='submit'] {
     color: var(--white-color);
     cursor: pointer;
     outline: none;
+    border: none;
+    border-radius: 1rem;
+    transition: var(--default-transition);
+}
+
+input[type='submit']:hover,
+button[type='submit']:hover {
+    transform: scale(0.98);
 }
 
 input[type='checkbox'] {

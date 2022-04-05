@@ -19,6 +19,10 @@
     padding: 0.5rem 0.25rem;
 }
 
+.toggle-filter {
+    display: none;
+}
+
 .minimize {
     font-size: 2rem;
 }
@@ -43,4 +47,26 @@
 input[type='range'] {
     width: 100%;
     margin-top: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+    .product-display {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .form-container-filter {
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .toggle-filter {
+        display: block;
+        font-weight: 600;
+    }
+
+    .product-list {
+        border-left: none;
+    }
 }
