@@ -1,11 +1,15 @@
 <div align="center">
     <h1>⚾ PlayMart</h1>
 </div>
+
 ## Table of Contents:
+
 - [About](#about)
 - [Features](#features)
 - [Find me on](#find-me-on)
+
 ---
+
 ## About:
 
 PlayMart, a dreamland for gamers to get their favourite games at a much lower cost than anywhere else. Do visit the website and checkout all the amazing games we make available to our buyers.
