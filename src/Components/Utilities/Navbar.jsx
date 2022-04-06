@@ -66,7 +66,7 @@ const Navbar = ({ getSearchQuery }) => {
         <Link to='/wishlist' className='btn btn-link'>
           <i className='fas fa-heart icon'></i>
           <span className='small'>My WishList</span>
-          {wishList.wishes.length > 0 ? (
+          {userLoggedIn && wishList.wishes.length > 0 ? (
             <span className='badge small'>{wishList.wishes.length}</span>
           ) : (
             ''
@@ -75,7 +75,7 @@ const Navbar = ({ getSearchQuery }) => {
         <Link to='/cart' className='btn btn-link'>
           <i className='fas fa-shopping-cart icon'></i>
           <span className='small'>My Cart</span>
-          {cart.cart.length > 0 ? (
+          {userLoggedIn && cart.cart.length > 0 ? (
             <span className='badge small'>{cart.cart.length}</span>
           ) : (
             ''
