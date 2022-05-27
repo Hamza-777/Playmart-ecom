@@ -13,8 +13,6 @@ export const products = [
         category: ["role-playing", "actionAdventure"],
         price: "3299",
         stars: 4.0,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -23,8 +21,6 @@ export const products = [
         category: ["actionAdventure", "role-playing"],
         price: "1230",
         stars: 2.6,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -33,8 +29,6 @@ export const products = [
         category: ["survival", 'horror'],
         price: "324",
         stars: 1.5,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -43,8 +37,6 @@ export const products = [
         category: ["actionAdventure"],
         price: "1325",
         stars: 1.9,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -53,8 +45,6 @@ export const products = [
         category: ["actionAdventure"],
         price: "1210",
         stars: 4.5,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -63,8 +53,6 @@ export const products = [
         category: ["rts", "party", "actionAdventure"],
         price: "60",
         stars: 2.0,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -73,8 +61,6 @@ export const products = [
         category: ["actionAdventure", "role-playing"],
         price: "1100",
         stars: 4.1,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -83,8 +69,6 @@ export const products = [
         category: ["role-playing", "rts"],
         price: "1610",
         stars: 3.7,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -93,8 +77,6 @@ export const products = [
         category: ["openWorld", "actionAdventure"],
         price: "1162",
         stars: 4.2,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -103,8 +85,6 @@ export const products = [
         category: ["actionAdventure", "openWorld"],
         price: "1092",
         stars: 3.9,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -113,8 +93,6 @@ export const products = [
         category: ["rts", "role-playing", "actionAdventure"],
         price: "750",
         stars: 3.1,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -123,8 +101,6 @@ export const products = [
         category: ["role-playing", "actionAdventure"],
         price: "747",
         stars: 3.2,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -133,8 +109,6 @@ export const products = [
         category: ["actionAdventure"],
         price: "351",
         stars: 2.5,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -143,8 +117,6 @@ export const products = [
         category: ["actionAdventure"],
         price: "1499",
         stars: 4.3,
-        inWishList: false,
-        inCart: false
     },
     {
         _id: uuid(),
@@ -153,7 +125,5 @@ export const products = [
         category: ["actionAdventure"],
         price: "1499",
         stars: 3.5,
-        inWishList: false,
-        inCart: false
     }
 ];
