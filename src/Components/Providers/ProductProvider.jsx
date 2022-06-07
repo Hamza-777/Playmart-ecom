@@ -41,33 +41,12 @@ const reducer = (state, { type, payload }) => {
 		case "FILTER_PRODUCTS":
 			return {
 				...state,
-				prods: payload.aboveFour
-					? sortProducts([
-							...payload.products
-								.filter((product) => product.stars >= 4)
-								.filter((product) => sliderCondition(product))
-								.filter((product) => categoryCondition(product)),
-					  ])
-					: payload.aboveThree
-					? sortProducts([
-							...payload.products
-								.filter((product) => product.stars >= 3)
-								.filter((product) => sliderCondition(product))
-								.filter((product) => categoryCondition(product)),
-					  ])
-					: payload.aboveTwo
-					? sortProducts([
-							...payload.products
-								.filter((product) => product.stars >= 2)
-								.filter((product) => sliderCondition(product))
-								.filter((product) => categoryCondition(product)),
-					  ])
-					: sortProducts([
-							...payload.products
-								.filter((product) => product.stars >= 1)
-								.filter((product) => sliderCondition(product))
-								.filter((product) => categoryCondition(product)),
-					  ]),
+				prods: sortProducts([
+					...payload.products
+						.filter((product) => product.stars >= payload.starValue)
+						.filter((product) => sliderCondition(product))
+						.filter((product) => categoryCondition(product)),
+				]),
 			};
 		case "GET_WISHES":
 		case "ADD_WISH":

@@ -141,10 +141,15 @@ const ProductListing = ({ searchQuery }) => {
 				lowToHigh,
 				highToLow,
 				slider,
-				aboveOne,
-				aboveTwo,
-				aboveThree,
-				aboveFour,
+				starValue: aboveFour
+					? 4
+					: aboveThree
+					? 3
+					: aboveTwo
+					? 2
+					: aboveOne
+					? 1
+					: 0,
 				openWorld,
 				actionAdventure,
 				rts,
@@ -406,6 +411,7 @@ const ProductListing = ({ searchQuery }) => {
 					)}
 				</div>
 			</aside>
+			{displayFilter && <hr className='rule appear' />}
 			<section className='product-list flex-row-wrap align-start justify-center'>
 				{prods &&
 					prods.map((product) =>

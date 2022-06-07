@@ -53,6 +53,10 @@ input[type="range"] {
 	margin-bottom: 2rem;
 }
 
+.appear {
+	display: none;
+}
+
 @media screen and (max-width: 900px) {
 	.product-display {
 		flex-direction: column;
@@ -72,5 +76,9 @@ input[type="range"] {
 
 	.product-list {
 		border-left: none;
+	}
+
+	.appear {
+		display: block;
 	}
 }
