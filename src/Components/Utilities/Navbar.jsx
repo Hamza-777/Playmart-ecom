@@ -1,16 +1,13 @@
 import React from "react";
 import "../Styles/Navbar.css";
-import { Link, useLocation, Navigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../Providers/AuthProvider";
 import { useProduct } from "../Providers/ProductProvider";
-import { removeAuth } from "./localStorage";
-import { LogOutSuccess } from "./toasts";
 
 const Navbar = ({ getSearchQuery }) => {
 	const location = useLocation().pathname;
 	const {
 		authState: { userLoggedIn },
-		dispatchAuth,
 	} = useAuth();
 	const {
 		productState: { cart, wishlist },
@@ -18,15 +15,6 @@ const Navbar = ({ getSearchQuery }) => {
 
 	const changeSearchQuery = (e) => {
 		getSearchQuery(e.target.value);
-	};
-
-	const logoutUser = (e) => {
-		removeAuth();
-		dispatchAuth({
-			type: "LOGGED_OUT",
-		});
-		LogOutSuccess();
-		return <Navigate to='/login' />;
 	};
 
 	return (
@@ -54,7 +42,7 @@ const Navbar = ({ getSearchQuery }) => {
 			)}
 			<div className='navbar-right flex-center'>
 				{userLoggedIn ? (
-					<Link to='/profile' className='btn btn-login' onClick={logoutUser}>
+					<Link to='/profile' className='btn btn-login'>
 						<div className='user-avatar flex-center'>
 							<i class='fa-solid fa-user icon'></i>
 						</div>

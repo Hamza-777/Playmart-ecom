@@ -1,0 +1,52 @@
+.profile {
+	width: 75%;
+	margin-inline: auto;
+	padding: 1rem 2rem;
+	gap: 1rem;
+	border: 2px solid #333;
+	border-radius: 7px;
+}
+
+.profile-avatar {
+	width: 10rem;
+	height: 10rem;
+}
+
+.profile-avatar > .icon {
+	font-size: 7rem;
+}
+
+.user-options {
+	gap: 3rem;
+}
+
+.user-options > .h5 {
+	font-weight: 600;
+}
+
+.btn-logout {
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+	background-color: #3a3845;
+	color: #fff;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	transition: var(--default-transition);
+}
+
+.btn-logout:hover {
+	transform: scale(1.1);
+}
+
+.bag-count {
+	margin-left: 1rem;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background-color: #fff;
+	color: #3a3845;
+}
+
+.cards-display {
+	gap: 2rem;
+}
