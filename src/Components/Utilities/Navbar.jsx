@@ -21,14 +21,12 @@ const Navbar = ({ getSearchQuery }) => {
 	};
 
 	const logoutUser = (e) => {
-		if (e.target.name === "Logout") {
-			removeAuth();
-			dispatchAuth({
-				type: "LOGGED_OUT",
-			});
-			LogOutSuccess();
-			return <Navigate to='/login' />;
-		}
+		removeAuth();
+		dispatchAuth({
+			type: "LOGGED_OUT",
+		});
+		LogOutSuccess();
+		return <Navigate to='/login' />;
 	};
 
 	return (
@@ -55,14 +53,18 @@ const Navbar = ({ getSearchQuery }) => {
 				</div>
 			)}
 			<div className='navbar-right flex-center'>
-				<Link
-					to='/login'
-					className='btn btn-login'
-					name={userLoggedIn ? "Logout" : "LogIn / SignUp"}
-					onClick={logoutUser}
-				>
-					{userLoggedIn ? "Logout" : "LogIn / SignUp"}
-				</Link>
+				{userLoggedIn ? (
+					<Link to='/profile' className='btn btn-login' onClick={logoutUser}>
+						<div className='user-avatar flex-center'>
+							<i class='fa-solid fa-user icon'></i>
+						</div>
+					</Link>
+				) : (
+					<Link to='/login' className='btn btn-login'>
+						LogIn / SignUp
+					</Link>
+				)}
+
 				<Link to='/wishlist' className='btn btn-link'>
 					<i className='fas fa-heart icon'></i>
 					<span className='small'>My WishList</span>
