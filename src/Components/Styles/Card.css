@@ -1,218 +1,221 @@
 /* Card */
 .card {
-    position: relative;
-    border-radius: 5px;
-    border: 1px solid var(--light-black-1);
-    display: flex;
-    flex-direction: column;
-    background: var(--white-color);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	position: relative;
+	border-radius: 5px;
+	border: 1px solid var(--light-black-1);
+	display: flex;
+	flex-direction: column;
+	background: var(--white-color);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .card-vertical {
-    min-width: 18rem;
-    max-width: 18rem;
+	min-width: 18rem;
+	max-width: 18rem;
 }
 
 .card-horizontal {
-    width: 40rem;
+	width: 40rem;
 }
 
 .card-horizontal > .card-header {
-    display: flex;
-    flex-direction: row;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
 }
 
 .card-img {
-    width: 100%;
-    border-radius: 5px 5px 0 0;
-    height: 25rem;
-    text-align: center;
+	width: 100%;
+	border-radius: 5px 5px 0 0;
+	height: 25rem;
+	text-align: center;
 }
 
 .card-horizontal > .card-header > .card-img {
-    width: 12rem;
-    height: 15rem;
+	width: 12rem;
+	height: 15rem;
 }
 
 .card-horizontal > .card-header > .card-img > img {
-    border-radius: 5px 0 0 5px;
-    object-fit: cover;
-    object-position: center 0;
+	border-radius: 5px 0 0 5px;
+	object-fit: cover;
+	object-position: center 0;
 }
 
-.card-img>img {
-    border-radius: inherit;
-    object-fit: cover;
-    object-position: center 0;
+.card-img > img {
+	border-radius: inherit;
+	object-fit: cover;
+	object-position: center 0;
 }
 
 .card-body {
-    padding: 20px 15px 15px;
-    display: flex;
-    gap: 16px;
+	padding: 20px 15px 15px;
+	display: flex;
+	gap: 16px;
 }
 
 .card-vertical > .titles {
-    max-width: 15rem;
-    padding: 20px 15px 0 15px;
+	max-width: 15rem;
+	padding: 20px 15px 0 15px;
 }
 
-.titles>h3 {
-    font-size: 1.1rem;
-    overflow: hidden;
-    white-space: nowrap;
-    color: var(--secondary-color);
-    text-overflow: ellipsis;
+.titles > h3 {
+	font-size: 1.1rem;
+	overflow: hidden;
+	white-space: nowrap;
+	color: var(--secondary-color);
+	text-overflow: ellipsis;
 }
 
 .card-horizontal > .card-header > .card-body {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
 }
 
-.card-body>p {
-    color: var(--dark-color);
-    font-size: 14px;
-    text-overflow: ellipsis;
+.card-body > p {
+	color: var(--dark-color);
+	font-size: 14px;
+	text-overflow: ellipsis;
 }
 
 .stars {
-    margin-left: 0.25rem;
+	margin-left: 0.25rem;
 }
 
 .price {
-    font-weight: 600;
+	font-weight: 600;
 }
 
 .card-tools {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 4rem;
 }
 
 .card-vertical > .card-tools {
-    padding: 20px 15px 15px;
+	padding: 20px 15px 15px;
 }
 
-.card-tools>.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-left: 0;
+.card-tools > .buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-left: 0;
 }
-
 
 #to-cart {
-    background: var(--green-color);
+	background-color: var(--green-color);
 }
 
-.card-tools>.buttons>button {
-    padding: 1rem 1.2rem;
-    transition: var(--default-transition);
-    background: var(--black-color);
-    color: var(--white-color);
-    font-size: 1rem;
-    border-radius: 0.5rem;
+.card-tools > .buttons > button,
+.to-cart {
+	padding: 1rem 1.2rem;
+	transition: var(--default-transition);
+	background: var(--black-color);
+	color: var(--white-color);
+	font-size: 1rem;
+	border-radius: 0.5rem;
 }
 
-.card-tools>.buttons>button:hover {
-    transform: scale(0.98);
+.card-tools > .buttons > button:hover {
+	transform: scale(0.98);
 }
 
 .icons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
 }
 
 .icon-container {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--default-transition);
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: var(--default-transition);
 }
 
 .icon-container:hover {
-    background: transparent;
-    color: var(--badge-color);
-    transform: scale(1.1);
+	background: transparent;
+	color: var(--badge-color);
+	transform: scale(1.1);
 }
 
 .icon-container > i {
-    color: var(--red-color);
-    font-size: 22px;
+	color: var(--red-color);
+	font-size: 22px;
 }
 
 .to-wishlist > i {
-    color: var(--badge-color);
+	color: var(--badge-color);
 }
 
 .card-badge,
 .card-dismiss {
-    position: absolute;
-    top: 5px;
-    color: var(--white-color);
-    font-weight: 700;
-    font-size: 0.9rem;
-    padding: 5px 7px;
+	position: absolute;
+	top: 5px;
+	color: var(--white-color);
+	font-weight: 700;
+	font-size: 0.9rem;
+	padding: 5px 7px;
 }
 
 .card-badge {
-    left: 5px;
-    background: var(--badge-color);
-    border-radius: 2rem;
+	left: 5px;
+	background: var(--badge-color);
+	border-radius: 2rem;
 }
 
 .card-dismiss {
-    right: 5px;
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--light-black-8);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+	right: 5px;
+	width: 2.5rem;
+	height: 2.5rem;
+	background: var(--light-black-8);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 
 .card-dismiss:hover {
-    background: var(--light-black-8);
+	background: var(--light-black-8);
 }
 
 .overlay-card,
 .text-card {
-    width: 22rem;
+	width: 22rem;
 }
 
 .overlay-card > .card-img {
-    height: 16rem;
+	height: 16rem;
 }
 
 .overlay-text {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    background: var(--light-black-1);
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	display: flex;
+	align-items: center;
+	background: var(--light-black-1);
 }
 
 .overlay-text:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .card-text {
-    padding: 2rem;
-    text-align: justify;
-    text-align-last: center;
-    text-overflow: ellipsis;
+	padding: 2rem;
+	text-align: justify;
+	text-align-last: center;
+	text-overflow: ellipsis;
 }
