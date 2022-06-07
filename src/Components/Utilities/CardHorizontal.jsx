@@ -1,13 +1,88 @@
 import React, { useState, useEffect } from "react";
 import { useProduct } from "../Providers/ProductProvider";
 import "react-toastify/dist/ReactToastify.css";
+import { addToWishlist, removeFromCart, updateItemQuantity } from "./requests";
+import { errorPopup, successPopup } from "./toasts";
+import { Link } from "react-router-dom";
 
 const CardHorizontal = ({
-	item: { _id, imgSrc, title, price, stars, qty },
+	product: { _id, imgSrc, title, price, stars, qty },
 }) => {
+	const [quantity, setQuantity] = useState(+qty);
 	const {
-		productState: { wishlist, cart },
+		productState: { wishlist },
+		dispatchState,
 	} = useProduct();
+
+	useEffect(() => {
+		if (qty === 1) {
+			if (qty < quantity) {
+				updateItemQuantity(
+					{
+						type: "increment",
+					},
+					_id
+				).then((res) => {
+					dispatchState({
+						type: "UPDATE_COUNT",
+						payload: res,
+					});
+				});
+			}
+		} else {
+			if (qty < quantity) {
+				updateItemQuantity(
+					{
+						type: "increment",
+					},
+					_id
+				).then((res) => {
+					dispatchState({
+						type: "UPDATE_COUNT",
+						payload: res,
+					});
+				});
+			} else if (qty > quantity) {
+				updateItemQuantity(
+					{
+						type: "decrement",
+					},
+					_id
+				).then((res) => {
+					dispatchState({
+						type: "UPDATE_COUNT",
+						payload: res,
+					});
+				});
+			}
+		}
+	}, [quantity]);
+
+	const addItemtoWishlist = (e) => {
+		addToWishlist({
+			_id,
+			imgSrc,
+			title,
+			price,
+			stars,
+		}).then((res) => {
+			dispatchState({
+				type: "ADD_WISH",
+				payload: res,
+			});
+		});
+		successPopup("Item added to wishlist!");
+	};
+
+	const removeItemFromCart = (e) => {
+		removeFromCart(_id).then((res) => {
+			dispatchState({
+				type: "REMOVE_CART",
+				payload: res,
+			});
+		});
+		errorPopup("Item removed from Cart!");
+	};
 
 	return (
 		<div className='card card-horizontal'>
@@ -21,15 +96,31 @@ const CardHorizontal = ({
 						<h5>₹{price}</h5>
 					</div>
 					<div className='quantity flex-center'>
-						<label htmlFor='password'>Quantity: </label>
-						<input type='number' className='number' min='0' value={qty} />
+						<label htmlFor='password' className='h4'>
+							Quantity:{" "}
+						</label>
+						<input
+							type='number'
+							className='number'
+							min='0'
+							value={qty}
+							onChange={(e) => setQuantity(+e.target.value)}
+						/>
 					</div>
 					<div className='card-tools'>
 						<div className='buttons'>
-							<button className='btn'>Add To Wishlist</button>
+							{wishlist && wishlist.some((item) => item._id === _id) ? (
+								<Link to='/wishlist' className='btn to-cart' id='to-cart'>
+									Go To Wishlist
+								</Link>
+							) : (
+								<button className='btn' onClick={addItemtoWishlist}>
+									Add To Wishlist
+								</button>
+							)}
 						</div>
 						<div className='icons'>
-							<div className='icon-container'>
+							<div className='icon-container' onClick={removeItemFromCart}>
 								<i className='fa-solid fa-trash-can'></i>
 							</div>
 						</div>

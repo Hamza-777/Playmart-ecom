@@ -12,7 +12,6 @@ import {
 const sendLoginReq = async (body) => {
 	try {
 		const response = await axios.post("/api/auth/login", body);
-		console.log(response);
 		setAuth(response.data.encodedToken);
 		logInSuccess();
 		return response.data.encodedToken;
@@ -79,7 +78,7 @@ const addToWishlist = async (body) => {
 	};
 	try {
 		const response = await axios.post(
-			`/api/user/wishlist`,
+			"/api/user/wishlist",
 			{ product: body },
 			config
 		);
@@ -89,18 +88,14 @@ const addToWishlist = async (body) => {
 	}
 };
 
-const removeFromWishlist = async (body, id) => {
+const removeFromWishlist = async (id) => {
 	const config = {
 		headers: {
 			authorization: getAuth(),
 		},
 	};
 	try {
-		const response = await axios.delete(
-			`/api/user/wishlist/${id}`,
-			{ product: body },
-			config
-		);
+		const response = await axios.delete(`/api/user/wishlist/${id}`, config);
 		return response.data.wishlist;
 	} catch (err) {
 		errorPopup("No such user exists!");
@@ -139,18 +134,14 @@ const addToCart = async (body) => {
 	}
 };
 
-const removeFromCart = async (body, id) => {
+const removeFromCart = async (id) => {
 	const config = {
 		headers: {
 			authorization: getAuth(),
 		},
 	};
 	try {
-		const response = await axios.delete(
-			`/api/user/cart/${id}`,
-			{ product: body },
-			config
-		);
+		const response = await axios.delete(`/api/user/cart/${id}`, config);
 		return response.data.cart;
 	} catch (err) {
 		errorPopup("No such user exists!");

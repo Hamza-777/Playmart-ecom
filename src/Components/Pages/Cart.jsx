@@ -12,18 +12,24 @@ const Cart = () => {
 	} = useProduct();
 
 	useEffect(() => {
-		setTotalPrice(cart.reduce((acc, obj) => acc + parseInt(obj.totalPrice), 0));
+		cart &&
+			cart.length > 0 &&
+			setTotalPrice(
+				cart.reduce((acc, obj) => acc + parseInt(obj.price) * +obj.qty, 0)
+			);
 	}, [cart]);
 
 	return (
 		<main className='main wishlist flex flex-col align-center'>
-			<h1>My Cart ({cart.length})</h1>
-			{cart.length > 0 ? (
+			<h1>My Cart ({cart && cart.length})</h1>
+			{cart && cart.length > 0 ? (
 				<section className='cart-content flex-center align-start'>
 					<div className='cart-left flex-center flex-col align-stretch'>
 						<Address />
 						{cart &&
-							cart.map((item) => <CardHorizontal key={item._id} item={item} />)}
+							cart.map((item) => (
+								<CardHorizontal key={item._id} product={item} />
+							))}
 					</div>
 					<div className='cart-right flex-center flex-col align-start'>
 						<h3>Coupons / Promo Code</h3>
@@ -37,7 +43,7 @@ const Cart = () => {
 						</form>
 						<h3>
 							Purchase Details:{" "}
-							{cart.length > 0 && (
+							{cart && cart.length > 0 && (
 								<span className='small'>
 									( {cart.length} {cart.length === 1 ? "item" : "items"} )
 								</span>

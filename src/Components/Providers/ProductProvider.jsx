@@ -27,58 +27,58 @@ const reducer = (state, { type, payload }) => {
 		return parseInt(product.price) <= payload.slider;
 	};
 
+	const sortProducts = (products) => {
+		if (payload.lowToHigh) {
+			return products.sort((a, b) => +a.price - +b.price);
+		} else if (payload.highToLow) {
+			return products.sort((a, b) => +b.price - +a.price);
+		} else {
+			return products;
+		}
+	};
+
 	switch (type) {
 		case "FILTER_PRODUCTS":
 			return {
 				...state,
 				prods: payload.aboveFour
-					? [
+					? sortProducts([
 							...payload.products
 								.filter((product) => product.stars >= 4)
 								.filter((product) => sliderCondition(product))
 								.filter((product) => categoryCondition(product)),
-					  ]
+					  ])
 					: payload.aboveThree
-					? [
+					? sortProducts([
 							...payload.products
 								.filter((product) => product.stars >= 3)
 								.filter((product) => sliderCondition(product))
 								.filter((product) => categoryCondition(product)),
-					  ]
+					  ])
 					: payload.aboveTwo
-					? [
+					? sortProducts([
 							...payload.products
 								.filter((product) => product.stars >= 2)
 								.filter((product) => sliderCondition(product))
 								.filter((product) => categoryCondition(product)),
-					  ]
-					: [
+					  ])
+					: sortProducts([
 							...payload.products
 								.filter((product) => product.stars >= 1)
 								.filter((product) => sliderCondition(product))
 								.filter((product) => categoryCondition(product)),
-					  ],
+					  ]),
 			};
+		case "GET_WISHES":
 		case "ADD_WISH":
-			return {
-				...state,
-				wishlist: payload,
-			};
 		case "REMOVE_WISH":
 			return {
 				...state,
 				wishlist: payload,
 			};
+		case "GET_CARTS":
 		case "ADD_CART":
-			return {
-				...state,
-				cart: payload,
-			};
 		case "REMOVE_CART":
-			return {
-				...state,
-				cart: payload,
-			};
 		case "UPDATE_COUNT":
 			return {
 				...state,

@@ -78,7 +78,6 @@ const SignUp = () => {
 					onSubmit={submitHandler}
 				>
 					<div className='form-item flex flex-col align-start'>
-						<label htmlFor='name'>Name</label>
 						<input
 							type='text'
 							placeholder='Enter your name'
@@ -89,7 +88,6 @@ const SignUp = () => {
 						/>
 					</div>
 					<div className='form-item flex flex-col align-start'>
-						<label htmlFor='email'>Email</label>
 						<input
 							type='email'
 							placeholder='Enter your email'
@@ -100,7 +98,6 @@ const SignUp = () => {
 						/>
 					</div>
 					<div className='form-item flex flex-col align-start'>
-						<label htmlFor='password'>Password</label>
 						<div className='pass'>
 							<input
 								type={typePass}
@@ -118,7 +115,6 @@ const SignUp = () => {
 						</div>
 					</div>
 					<div className='form-item flex flex-col align-start'>
-						<label htmlFor='password'>Confirm Password</label>
 						<div className='pass'>
 							<input
 								type={typePassConf}

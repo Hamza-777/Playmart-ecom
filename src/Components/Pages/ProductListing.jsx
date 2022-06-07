@@ -13,6 +13,11 @@ const ProductListing = ({ searchQuery }) => {
 	const [formOneSym, setFormOneSym] = useState("-");
 	const [formTwoSym, setFormTwoSym] = useState("-");
 	const [formThreeSym, setFormThreeSym] = useState("-");
+	const [priceSort, setPriceSort] = useState({
+		lowToHigh: false,
+		highToLow: false,
+	});
+	const { lowToHigh, highToLow } = priceSort;
 	const [formDataOne, setFormDataOne] = useState({
 		openWorld: true,
 		actionAdventure: true,
@@ -114,6 +119,7 @@ const ProductListing = ({ searchQuery }) => {
 			aboveFour: false,
 		});
 		setFormDataThree({ ...formDataThree, slider: 5000 });
+		setPriceSort({ ...priceSort, lowToHigh: false, highToLow: false });
 	};
 
 	const resizeFormOne = (e) => {
@@ -132,6 +138,8 @@ const ProductListing = ({ searchQuery }) => {
 		dispatchState({
 			type: "FILTER_PRODUCTS",
 			payload: {
+				lowToHigh,
+				highToLow,
 				slider,
 				aboveOne,
 				aboveTwo,
@@ -148,6 +156,8 @@ const ProductListing = ({ searchQuery }) => {
 			},
 		});
 	}, [
+		lowToHigh,
+		highToLow,
 		slider,
 		aboveOne,
 		aboveTwo,
@@ -343,7 +353,7 @@ const ProductListing = ({ searchQuery }) => {
 					</div>
 					{formThreeSym === "-" && (
 						<form className='filter-form'>
-							<div className='form-item flex flex-col align-start'>
+							<div className='form-item slider-form flex flex-col align-start'>
 								<div className='prices flex-center justify-between'>
 									<span className='small'>0</span>
 									<span className='small'>{slider}</span>
@@ -360,6 +370,38 @@ const ProductListing = ({ searchQuery }) => {
 									onChange={changeFormThree}
 								/>
 							</div>
+							<div className='form-item flex flex-col align-start misc-inputs'>
+								<div className='remember'>
+									<input
+										type='radio'
+										checked={lowToHigh}
+										onChange={(e) =>
+											setPriceSort({
+												...priceSort,
+												lowToHigh: !lowToHigh,
+												highToLow: false,
+											})
+										}
+									/>
+									<label htmlFor='radio x-small'>Low To High</label>
+								</div>
+							</div>
+							<div className='form-item flex flex-col align-start misc-inputs'>
+								<div className='remember'>
+									<input
+										type='radio'
+										checked={highToLow}
+										onChange={(e) =>
+											setPriceSort({
+												...priceSort,
+												highToLow: !highToLow,
+												lowToHigh: false,
+											})
+										}
+									/>
+									<label htmlFor='radio x-small'>High To Low</label>
+								</div>
+							</div>
 						</form>
 					)}
 				</div>
@@ -369,16 +411,7 @@ const ProductListing = ({ searchQuery }) => {
 					prods.map((product) =>
 						product.title &&
 						product.title.toLowerCase().indexOf(searchQuery) !== -1 ? (
-							<Card
-								key={product._id}
-								id={product._id}
-								imgSrc={product.imgSrc}
-								title={product.title}
-								price={product.price}
-								stars={product.stars}
-								inWishList={product.inWishList}
-								inCart={product.inCart}
-							/>
+							<Card key={product._id} product={product} />
 						) : (
 							""
 						)
