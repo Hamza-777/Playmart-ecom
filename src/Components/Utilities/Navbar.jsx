@@ -18,10 +18,26 @@ const Navbar = ({ getSearchQuery }) => {
 	};
 
 	return (
-		<nav className='navbar flex flex-row align-center justify-between'>
+		<nav
+			className='navbar flex flex-row align-center justify-between'
+			style={{
+				backgroundColor:
+					(location.includes("/product/") || location.includes("/profile")) &&
+					"transparent",
+			}}
+		>
 			<div className='navbar-left'>
 				<Link to='/' className='logo flex-center'>
-					<h1>⚾ PlayMart</h1>
+					<h1
+						style={{
+							color:
+								(location.includes("/product/") ||
+									location.includes("/profile")) &&
+								"#fff",
+						}}
+					>
+						⚾ PlayMart
+					</h1>
 				</Link>
 			</div>
 			{location && location === "/product-listing" && (
@@ -42,10 +58,22 @@ const Navbar = ({ getSearchQuery }) => {
 			)}
 			<div className='navbar-right flex-center'>
 				{userLoggedIn ? (
-					<Link to='/profile' className='btn btn-login'>
-						<div className='user-avatar flex-center'>
-							<i class='fa-solid fa-user icon'></i>
-						</div>
+					<Link
+						to='/profile'
+						className='btn btn-login flex-center flex-col'
+						style={{
+							color:
+								(location.includes("/product/") ||
+									location.includes("/profile")) &&
+								"#fff",
+							backgroundColor:
+								(location.includes("/product/") ||
+									location.includes("/profile")) &&
+								"transparent",
+						}}
+					>
+						<i className='fa-solid fa-user icon'></i>
+						<span className='small'>Welcome Back!</span>
 					</Link>
 				) : (
 					<Link to='/login' className='btn btn-login'>
@@ -53,7 +81,20 @@ const Navbar = ({ getSearchQuery }) => {
 					</Link>
 				)}
 
-				<Link to='/wishlist' className='btn btn-link'>
+				<Link
+					to='/wishlist'
+					className='btn btn-link'
+					style={{
+						color:
+							(location.includes("/product/") ||
+								location.includes("/profile")) &&
+							"#fff",
+						backgroundColor:
+							(location.includes("/product/") ||
+								location.includes("/profile")) &&
+							"transparent",
+					}}
+				>
 					<i className='fas fa-heart icon'></i>
 					<span className='small'>My WishList</span>
 					{userLoggedIn && wishlist && wishlist.length > 0 ? (
@@ -62,7 +103,20 @@ const Navbar = ({ getSearchQuery }) => {
 						""
 					)}
 				</Link>
-				<Link to='/cart' className='btn btn-link'>
+				<Link
+					to='/cart'
+					className='btn btn-link'
+					style={{
+						color:
+							(location.includes("/product/") ||
+								location.includes("/profile")) &&
+							"#fff",
+						backgroundColor:
+							(location.includes("/product/") ||
+								location.includes("/profile")) &&
+							"transparent",
+					}}
+				>
 					<i className='fas fa-shopping-cart icon'></i>
 					<span className='small'>My Cart</span>
 					{userLoggedIn && cart && cart.length > 0 ? (

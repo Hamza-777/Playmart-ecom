@@ -13,6 +13,7 @@ import ErrorPage from "./Components/Pages/ErrorPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./Components/Pages/Profile";
+import Product from "./Components/Pages/Product";
 
 function App() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -29,6 +30,7 @@ function App() {
 					path='/product-listing'
 					element={<ProductListing searchQuery={searchQuery} />}
 				/>
+				<Route path='/product/:productId' element={<Product />} />
 				<Route path='/login' element={<Login />} />
 				<Route path='/signup' element={<SignUp />} />
 				<Route

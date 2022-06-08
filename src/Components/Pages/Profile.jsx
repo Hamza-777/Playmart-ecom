@@ -31,33 +31,45 @@ const Profile = () => {
 	};
 
 	return (
-		<main className='main'>
+		<main className='profile-page main'>
+			<img
+				src='https://cutewallpaper.org/21/4k-wallpaper-gaming/1920x1080-Gaming-Background-Wallpaper-Spiritedmusepress.com.jpg'
+				alt='profile-back'
+			/>
 			<section className='profile flex-center flex-col'>
 				<div className='user-avatar profile-avatar flex-center'>
-					<i class='fa-solid fa-user icon'></i>
+					<i className='fa-solid fa-user icon'></i>
 				</div>
+				<p className='h4'>{user && user.name}</p>
 				<hr className='rule' />
 				<div className='user-options flex-center'>
-					<p className='h5'>{user && user.name}</p>
-					<p className='h5'>{user && user.email}</p>
-					<button className='btn btn-logout' onClick={logoutUser}>
-						Logout
+					<p className='h5 flex-center'>
+						<i className='fa-solid fa-envelope icon'></i> {user && user.email}
+					</p>
+					<button className='btn btn-profile flex-center' onClick={logoutUser}>
+						Logout <i className='fa-solid fa-arrow-right-from-bracket icon'></i>
 					</button>
 				</div>
 				<hr className='rule' />
 				<div className='user-options flex-center'>
 					<button
-						className='btn btn-logout flex-center'
-						style={{ backgroundColor: show === "cart" ? "black" : "#3a3845" }}
+						className='btn btn-profile flex-center'
+						style={{
+							borderBottom:
+								show === "cart" ? "3px solid #000" : "3px solid transparent",
+						}}
 						onClick={(e) => setShow("cart")}
 					>
 						Cart Status{" "}
 						<div className='flex-center bag-count'>{cart && cart.length}</div>
 					</button>
 					<button
-						className='btn btn-logout flex-center'
+						className='btn btn-profile flex-center'
 						style={{
-							backgroundColor: show === "wishlist" ? "black" : "#3a3845",
+							borderBottom:
+								show === "wishlist"
+									? "3px solid #000"
+									: "3px solid transparent",
 						}}
 						onClick={(e) => setShow("wishlist")}
 					>
@@ -67,16 +79,31 @@ const Profile = () => {
 						</div>
 					</button>
 				</div>
-				<hr className='rule' />
 				<div className='flex-row-wrap justify-center cards-display'>
 					{cart && wishlist && cart.length === 0 && wishlist.length === 0 ? (
-						<p>Add to your cart & wishlist</p>
+						<img
+							src='img/empty_state.webp'
+							className='empty-box'
+							alt='emptiness'
+						/>
 					) : show === "cart" ? (
-						cart &&
-						cart.map((item) => <ImgCard key={item._id} product={item} />)
-					) : (
-						wishlist &&
+						cart && cart.length > 0 ? (
+							cart.map((item) => <ImgCard key={item._id} product={item} />)
+						) : (
+							<img
+								src='img/empty_state.webp'
+								className='empty-box'
+								alt='emptiness'
+							/>
+						)
+					) : wishlist && wishlist.length > 0 ? (
 						wishlist.map((item) => <ImgCard key={item._id} product={item} />)
+					) : (
+						<img
+							src='img/empty_state.webp'
+							className='empty-box'
+							alt='emptiness'
+						/>
 					)}
 				</div>
 			</section>
