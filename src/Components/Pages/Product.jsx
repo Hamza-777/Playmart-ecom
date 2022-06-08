@@ -93,7 +93,7 @@ const Product = () => {
 							) : (
 								<button
 									className='btn btn-product flex-center'
-									onClick={addItemtoWishlist}
+									onClick={userLoggedIn ? addItemtoWishlist : loginToProceed}
 								>
 									<i className='fas fa-heart icon'></i> Add To Wishlist
 								</button>
