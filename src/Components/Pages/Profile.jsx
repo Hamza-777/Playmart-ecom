@@ -6,6 +6,7 @@ import { useAuth } from "../Providers/AuthProvider";
 import { useProduct } from "../Providers/ProductProvider";
 import "../Styles/Profile.css";
 import ImgCard from "../Utilities/ImgCard";
+import Address from "../Utilities/Address";
 
 const Profile = () => {
 	const { dispatchAuth } = useAuth();
@@ -106,6 +107,8 @@ const Profile = () => {
 						/>
 					)}
 				</div>
+				<hr className='rule' />
+				<Address />
 			</section>
 		</main>
 	);

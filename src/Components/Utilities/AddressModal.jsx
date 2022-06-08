@@ -84,8 +84,8 @@ const AddressModal = () => {
 							required
 						/>
 					</div>
-					<div className='form-item flex-center flex-col'>
-						<input type='submit' value='Add' />
+					<div className='form-item form-btns flex-center'>
+						<button type='submit'>Add</button>
 						<button
 							className='btn btn-link flex-center'
 							onClick={(e) => setModalOpen(false)}

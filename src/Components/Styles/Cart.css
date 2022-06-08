@@ -28,6 +28,11 @@
 	gap: 1rem;
 }
 
+.address-left > .h4 {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
 .address-right > .btn {
 	background: var(--black-color);
 	color: var(--white-color);
