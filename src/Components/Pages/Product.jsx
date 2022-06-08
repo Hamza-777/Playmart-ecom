@@ -2,12 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAuth } from "../Providers/AuthProvider";
 import { useProduct } from "../Providers/ProductProvider";
-import { errorPopup, loginToProceed, successPopup } from "../Utilities/toasts";
-import {
-	addToCart,
-	addToWishlist,
-	removeFromWishlist,
-} from "../Utilities/requests";
+import { loginToProceed, successPopup } from "../Utilities/toasts";
+import { addToCart, addToWishlist } from "../Utilities/requests";
 import "../Styles/Product.css";
 
 const Product = () => {
@@ -36,16 +32,6 @@ const Product = () => {
 			});
 		});
 		successPopup("Item added to wishlist!");
-	};
-
-	const removeItemFromWishlist = (e) => {
-		removeFromWishlist(productId).then((res) => {
-			dispatchState({
-				type: "REMOVE_WISH",
-				payload: res,
-			});
-		});
-		errorPopup("Item removed from wishlist!");
 	};
 
 	const addItemToCart = (e) => {
