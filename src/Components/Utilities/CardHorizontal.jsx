@@ -60,7 +60,7 @@ const CardHorizontal = ({
 				});
 			}
 		}
-	}, [quantity]);
+	}, [quantity, _id, dispatchState, qty]);
 
 	const addItemtoWishlist = (e) => {
 		addToWishlist({
