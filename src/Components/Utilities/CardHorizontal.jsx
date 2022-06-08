@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from "../Providers/AuthProvider";
 import { useProduct } from "../Providers/ProductProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { addToWishlist, removeFromCart, updateItemQuantity } from "./requests";
-import { errorPopup, successPopup } from "./toasts";
+import { errorPopup, loginToProceed, successPopup } from "./toasts";
 import { Link } from "react-router-dom";
 
 const CardHorizontal = ({
 	product: { _id, imgSrc, title, price, stars, qty },
 }) => {
 	const [quantity, setQuantity] = useState(+qty);
+	const {
+		authState: { userLoggedIn },
+	} = useAuth();
 	const {
 		productState: { wishlist },
 		dispatchState,
@@ -56,7 +60,7 @@ const CardHorizontal = ({
 				});
 			}
 		}
-	}, [quantity]);
+	}, [quantity, _id, dispatchState, qty]);
 
 	const addItemtoWishlist = (e) => {
 		addToWishlist({
@@ -114,7 +118,10 @@ const CardHorizontal = ({
 									Go To Wishlist
 								</Link>
 							) : (
-								<button className='btn' onClick={addItemtoWishlist}>
+								<button
+									className='btn'
+									onClick={userLoggedIn ? addItemtoWishlist : loginToProceed}
+								>
 									Add To Wishlist
 								</button>
 							)}

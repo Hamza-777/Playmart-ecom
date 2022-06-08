@@ -60,9 +60,9 @@ const Card = ({ product: { _id, imgSrc, title, price, stars } }) => {
 
 	return (
 		<div className='card card-vertical'>
-			<div className='card-img'>
+			<Link to={`/product/${_id}`} className='card-img'>
 				<img src={`/img/${imgSrc}`} alt='product description' />
-			</div>
+			</Link>
 			<div className='titles'>
 				<h3>{title}</h3>
 			</div>

@@ -33,7 +33,7 @@
 
 .card-horizontal > .card-header > .card-img {
 	width: 12rem;
-	height: 15rem;
+	height: auto;
 }
 
 .card-horizontal > .card-header > .card-img > img {

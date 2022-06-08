@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setAuth, getAuth } from "./localStorage";
+import { setAuth, getAuth, setUser } from "./localStorage";
 import {
 	errorPopup,
 	logInSuccess,
@@ -13,6 +13,7 @@ const sendLoginReq = async (body) => {
 	try {
 		const response = await axios.post("/api/auth/login", body);
 		setAuth(response.data.encodedToken);
+		setUser(response.data.foundUser);
 		logInSuccess();
 		return response.data.encodedToken;
 	} catch (err) {
@@ -24,6 +25,7 @@ const sendSignupReq = async (body) => {
 	try {
 		const response = await axios.post("/api/auth/signup", body);
 		setAuth(response.data.encodedToken);
+		setUser(response.data.createdUser);
 		SignUpSuccess();
 		return response.data.encodedToken;
 	} catch (err) {
